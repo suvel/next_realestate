@@ -12,6 +12,7 @@ const getLoans = (pageNo) => {
         }
       });
       const data = await response.json();
+      console.log({ data });
       console.log("successfully fetched loan");
       resolve(data);
     } catch (exe) {

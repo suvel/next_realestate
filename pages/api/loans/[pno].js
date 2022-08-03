@@ -1,5 +1,5 @@
 import Cors from "cors";
-import getLoans from "../../helper/getLoans";
+import getLoans from "../../../helper/getLoans";
 
 // Initializing the cors middleware
 const cors = Cors({
@@ -20,8 +20,10 @@ function runMiddleware(req, res, fn) {
 
 export default async function handler(req, res) {
   try {
+    const { pno: pageNo } = req.query;
     await runMiddleware(req, res, cors);
-    const loans = await getLoans();
+    const loans = await getLoans(pageNo);
+    console.log(loans);
     res.status(200).json({ data: loans });
   } catch (exe) {
     res.status(500).json();
