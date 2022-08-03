@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     const { pno: pageNo } = req.query;
     await runMiddleware(req, res, cors);
     const loans = await getLoans(pageNo);
-    console.log(loans);
+    // console.log(loans);
     res.status(200).json({ data: loans });
   } catch (exe) {
     res.status(500).json();
