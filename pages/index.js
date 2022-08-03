@@ -37,7 +37,28 @@ export async function getStaticProps(context) {
 
 const Loans = ({ data }) => {
   return data?.map((itm) => {
-    return <img src={itm?.companyLogo} />;
+    const first4Pros = itm?.pros?.slice(0, 4).map((pros) => {
+      return <div>{`✅ ${pros}`}</div>;
+    });
+    return (
+      <>
+        <div>name:{itm?.name}</div>
+        <div>comparisonRate:{itm?.comparisonRate}</div>
+        <div>advertisedRate:{itm?.advertisedRate}</div>
+        <div>{first4Pros}</div>
+        <div>
+          <img
+            style={{ width: "100px", height: "100px" }}
+            src={itm?.companyLogo}
+          />
+        </div>
+        <div>
+          <a target={"_blank"} href={itm?.gotoSiteUrl}>
+            Go to Link
+          </a>
+        </div>
+      </>
+    );
   });
 };
 const App = ({ paginationDetail, loanList }) => {
