@@ -1,3 +1,23 @@
 .Loans {
-    
+  display: grid;
+  padding: 10px;
+  gap: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .Loans {
+    grid-template-columns: auto;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .Loans {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .Loans {
+    grid-template-columns: auto auto auto;
+  }
 }

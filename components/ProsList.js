@@ -7,7 +7,7 @@ const ProsList = ({ pros, pCount }) => {
   }
   return (
     <div className={styles.ProsList}>
-      {pros?.map((pros, index) => {
+      {toBeRenderedPros?.map((pros, index) => {
         return (
           <div className={styles.Pro} key={index}>
             {pros}
