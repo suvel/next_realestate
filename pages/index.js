@@ -1,19 +1,14 @@
-import debugLog from "../helper/debugLog";
 import { useState } from "react";
+import Loans from "../components/Loans";
 
 const getLoans = (pageNo = 1) => {
-  debugger;
-  debugLog("running getLoans");
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(`http://localhost:3000/api/loans/${pageNo}`);
       const { data } = await response.json();
-      debugger;
-      debugLog("successfully fetched loan");
       resolve(data);
     } catch (exe) {
       console.log(exe);
-      debugLog("Error while fetching loans");
       reject("Error while fetching loans");
     }
   });
@@ -23,7 +18,6 @@ export async function getStaticProps(context) {
   const loans = await getLoans(1);
   // console.log({ loans });
   const { page, pageCount } = loans.meta;
-  debugger;
   return {
     props: {
       paginationDetail: {
@@ -35,32 +29,6 @@ export async function getStaticProps(context) {
   };
 }
 
-const Loans = ({ data }) => {
-  return data?.map((itm) => {
-    const first4Pros = itm?.pros?.slice(0, 4).map((pros) => {
-      return <div>{`✅ ${pros}`}</div>;
-    });
-    return (
-      <>
-        <div>name:{itm?.name}</div>
-        <div>comparisonRate:{itm?.comparisonRate}</div>
-        <div>advertisedRate:{itm?.advertisedRate}</div>
-        <div>{first4Pros}</div>
-        <div>
-          <img
-            style={{ width: "100px", height: "100px" }}
-            src={itm?.companyLogo}
-          />
-        </div>
-        <div>
-          <a target={"_blank"} href={itm?.gotoSiteUrl}>
-            Go to Link
-          </a>
-        </div>
-      </>
-    );
-  });
-};
 const App = ({ paginationDetail, loanList }) => {
   const [pagination, setPagination] = useState(paginationDetail);
   const [loans, setLoans] = useState(loanList);
@@ -78,11 +46,47 @@ const App = ({ paginationDetail, loanList }) => {
 
   return (
     <>
-      <div>{<Loans data={loans} />}</div>
+      <div>{<Loans loanList={loans} />}</div>
       <div>{pagination?.page}</div>
       <div>
         <button onClick={loadMore}>Load more</button>
       </div>
+      {/* <div className={styles.card}>
+        <div className={styles.class_header}>
+          <div className={styles.loan_logo}>
+            <img />
+          </div>
+          <div className={styles.loan_title}>
+            <h3>
+              With supporting text below as a natural lead-in to additional
+              content.
+            </h3>
+          </div>
+        </div>
+        <div className={styles.card_body}>
+          <div className={styles.loan_detail}>
+            <div className={styles.pros}>
+              <div className={styles.pro}>pro 1</div>
+              <div className={styles.pro}>pro 1</div>
+              <div className={styles.pro}>pro 1</div>
+              <div className={styles.pro}>pro 1</div>
+            </div>
+            <div className={styles.stats}>
+              <div className={styles.advertiseRate_container}>
+                <div className={styles.label}>Advertise Rate</div>
+                <div className={styles.number}>300</div>
+              </div>
+              <div className={styles.comparisonRate_container}>
+                <div className={styles.label}>Comparison Rate</div>
+                <div className={styles.number}>200</div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.action_container}>
+            <button className={styles.goToSite}>Go to Site</button>
+          </div>
+        </div>
+      </div> */}
     </>
   );
 };

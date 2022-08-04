@@ -1,0 +1,12 @@
+.LoanStats {
+    color: gray;
+    font-family: "Jura", sans-serif;
+  }
+  
+  .LoanStats .number {
+    font-size: 24px;
+  }
+  
+  .LoanStats .number::after {
+    content: "%";
+  }

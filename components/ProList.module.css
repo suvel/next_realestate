@@ -1,0 +1,9 @@
+.ProsList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.Pro::before {
+  content: "✅";
+  font-family: inherit;
+}

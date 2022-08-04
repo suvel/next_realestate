@@ -1,0 +1,10 @@
+
+.GoToSite {
+  padding: 7px 5px;
+  box-sizing: border-box;
+  text-decoration: none;
+  background: blue;
+  border-radius: 10px;
+  color: white;
+  font-family: "Jura", sans-serif;
+}
