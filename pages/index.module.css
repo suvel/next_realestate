@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pageNumber {
+  padding: 5px;
+  border: 1px solid;
+  cursor: pointer;
+}
+.pageNumber:hover {
+  background: red;
+}
+
+.selectedPage {
+  border: 1px solid red;
+}
+
+.Spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: white;
+  display: grid;
+  place-items: center;
+}

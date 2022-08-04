@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Loans from "../components/Loans";
+import styles from "./index.module.css";
 
 const getLoans = (pageNo = 1) => {
   return new Promise(async (resolve, reject) => {
@@ -28,28 +29,64 @@ export async function getStaticProps(context) {
   };
 }
 
+const Pagination = ({ curPage, totalPages, handelOnClick }) => {
+  console.log({ curPage });
+  const pagesButton = Array.from(Array(totalPages)).map((page, index) => {
+    return index + 1;
+  });
+  return (
+    <div className={styles.pagination}>
+      {pagesButton.map((pageNumber) => {
+        const isSelected = pageNumber === curPage ? styles.selectedPage : "";
+        return (
+          <div
+            onClick={() => handelOnClick(pageNumber)}
+            className={`${styles.pageNumber} ${isSelected}`}
+          >
+            {pageNumber}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const Spinner = () => {
+  return (
+    <div className={styles.Spinner}>⌚.... Please wait we are processing</div>
+  );
+};
+
 const App = ({ paginationDetail, loanList }) => {
   const [pagination, setPagination] = useState(paginationDetail);
   const [loans, setLoans] = useState(loanList);
+  const [showSpinner, setShowSpinner] = useState(false);
 
-  const loadMore = async () => {
-    const { page: currentPage, pageCount: currentPageCount } = pagination;
-    if (currentPage < currentPageCount) {
-      const newPageNo = currentPage + 1;
-      const loansObj = await getLoans(newPageNo);
-      const { page, pageCount } = loansObj.meta;
-      setPagination({ page, pageCount });
-      setLoans([...loans, ...loansObj.hits]);
-    }
+  const onPaginationChange = async (newPageNumber) => {
+    setShowSpinner(true);
+    const loansObj = await getLoans(newPageNumber);
+    const { page, pageCount } = loansObj.meta;
+    setPagination({ page, pageCount });
+    setLoans(loansObj.hits);
+    setShowSpinner(false);
   };
 
   return (
     <>
-      <div>{<Loans loanList={loans} />}</div>
-      <div>{pagination?.page}</div>
-      <div>
-        <button onClick={loadMore}>Load more</button>
-      </div>
+      {showSpinner ? (
+        <Spinner />
+      ) : (
+        <>
+          <div>{<Loans loanList={loans} />}</div>
+          <div>
+            <Pagination
+              curPage={pagination.page}
+              totalPages={pagination.pageCount}
+              handelOnClick={onPaginationChange}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };
