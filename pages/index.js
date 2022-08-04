@@ -16,7 +16,6 @@ const getLoans = (pageNo = 1) => {
 
 export async function getStaticProps(context) {
   const loans = await getLoans(1);
-  // console.log({ loans });
   const { page, pageCount } = loans.meta;
   return {
     props: {
@@ -51,42 +50,6 @@ const App = ({ paginationDetail, loanList }) => {
       <div>
         <button onClick={loadMore}>Load more</button>
       </div>
-      {/* <div className={styles.card}>
-        <div className={styles.class_header}>
-          <div className={styles.loan_logo}>
-            <img />
-          </div>
-          <div className={styles.loan_title}>
-            <h3>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </h3>
-          </div>
-        </div>
-        <div className={styles.card_body}>
-          <div className={styles.loan_detail}>
-            <div className={styles.pros}>
-              <div className={styles.pro}>pro 1</div>
-              <div className={styles.pro}>pro 1</div>
-              <div className={styles.pro}>pro 1</div>
-              <div className={styles.pro}>pro 1</div>
-            </div>
-            <div className={styles.stats}>
-              <div className={styles.advertiseRate_container}>
-                <div className={styles.label}>Advertise Rate</div>
-                <div className={styles.number}>300</div>
-              </div>
-              <div className={styles.comparisonRate_container}>
-                <div className={styles.label}>Comparison Rate</div>
-                <div className={styles.number}>200</div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.action_container}>
-            <button className={styles.goToSite}>Go to Site</button>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };
