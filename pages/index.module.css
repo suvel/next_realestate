@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap");
+
 .pagination {
   display: flex;
   justify-content: center;
 }
 .pageNumber {
+  font-family: "Jura", sans-serif;
   padding: 5px;
   border: 1px solid;
   cursor: pointer;
@@ -13,6 +17,7 @@
 
 .selectedPage {
   border: 1px solid red;
+  color: red;
 }
 
 .Spinner {
