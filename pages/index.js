@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Loans from "../components/Loans";
-import styles from "./index.module.css";
+import Spinner from "../components/Spinner";
+import Pagination from "../components/Pagination";
 
 const getLoans = (pageNo = 1) => {
   return new Promise(async (resolve, reject) => {
@@ -29,34 +30,6 @@ export async function getStaticProps(context) {
   };
 }
 
-const Pagination = ({ curPage, totalPages, handelOnClick }) => {
-  console.log({ curPage });
-  const pagesButton = Array.from(Array(totalPages)).map((page, index) => {
-    return index + 1;
-  });
-  return (
-    <div className={styles.pagination}>
-      {pagesButton.map((pageNumber) => {
-        const isSelected = pageNumber === curPage ? styles.selectedPage : "";
-        return (
-          <div
-            onClick={() => handelOnClick(pageNumber)}
-            className={`${styles.pageNumber} ${isSelected}`}
-          >
-            {pageNumber}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-const Spinner = () => {
-  return (
-    <div className={styles.Spinner}>⌚.... Please wait we are processing</div>
-  );
-};
-
 const App = ({ paginationDetail, loanList }) => {
   const [pagination, setPagination] = useState(paginationDetail);
   const [loans, setLoans] = useState(loanList);
@@ -77,14 +50,12 @@ const App = ({ paginationDetail, loanList }) => {
         <Spinner />
       ) : (
         <>
-          <div>{<Loans loanList={loans} />}</div>
-          <div>
-            <Pagination
-              curPage={pagination.page}
-              totalPages={pagination.pageCount}
-              handelOnClick={onPaginationChange}
-            />
-          </div>
+          <Loans loanList={loans} />
+          <Pagination
+            curPage={pagination.page}
+            totalPages={pagination.pageCount}
+            handelOnClick={onPaginationChange}
+          />
         </>
       )}
     </>

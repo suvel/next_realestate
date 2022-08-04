@@ -1,0 +1,18 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pageNumber {
+  font-family: "Jura", sans-serif;
+  padding: 5px;
+  border: 1px solid;
+  cursor: pointer;
+}
+.pageNumber:hover {
+  background: red;
+}
+
+.selectedPage {
+  border: 1px solid red;
+  color: red;
+}
