@@ -44,6 +44,7 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+  min-height: 200px;
 }
 
 .action_container {
