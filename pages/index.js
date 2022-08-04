@@ -2,6 +2,7 @@ import { useState } from "react";
 import Loans from "../components/Loans";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
+import { default as fetchInitialLoans } from "../helper/getLoans";
 
 const getLoans = (pageNo = 1) => {
   return new Promise(async (resolve, reject) => {
@@ -17,7 +18,7 @@ const getLoans = (pageNo = 1) => {
 };
 
 export async function getStaticProps(context) {
-  const loans = await getLoans(1);
+  const loans = await fetchInitialLoans();
   const { page, pageCount } = loans.meta;
   return {
     props: {
