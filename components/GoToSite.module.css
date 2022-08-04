@@ -1,10 +1,15 @@
-
 .GoToSite {
-  padding: 7px 5px;
+  padding: 7px 10px;
   box-sizing: border-box;
   text-decoration: none;
-  background: blue;
+  border: 2px solid black;
+  color: black;
   border-radius: 10px;
-  color: white;
   font-family: "Jura", sans-serif;
+}
+
+.GoToSite:hover{
+  border: 2px solid;
+  background: #6fd9f8;
+  color: white;
 }
