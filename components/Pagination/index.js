@@ -6,10 +6,11 @@ const Pagination = ({ curPage, totalPages, handelOnClick }) => {
   });
   return (
     <div className={styles.pagination}>
-      {pagesButton.map((pageNumber) => {
+      {pagesButton.map((pageNumber, index) => {
         const isSelected = pageNumber === curPage ? styles.selectedPage : "";
         return (
           <div
+            key={index}
             onClick={() => handelOnClick(pageNumber)}
             className={`${styles.pageNumber} ${isSelected}`}
           >

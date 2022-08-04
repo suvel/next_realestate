@@ -7,7 +7,7 @@ import { default as fetchInitialLoans } from "../helper/getLoans";
 const getLoans = (pageNo = 1) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/loans/${pageNo}`);
+      const response = await fetch(`/api/loans/${pageNo}`);
       const { data } = await response.json();
       resolve(data);
     } catch (exe) {
