@@ -1,4 +1,4 @@
-import LoanMiniCard from "./LoanMiniCard";
+import LoanMiniCard from "../LoanMiniCard";
 import styles from "./Loans.module.css";
 
 const Loans = ({ loanList }) => {

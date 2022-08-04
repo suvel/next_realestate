@@ -1,7 +1,7 @@
-import ProsList from "./ProsList";
-import GoToSite from "./GoToSite";
+import ProsList from "../ProList";
+import GoToSite from "../GoToSite";
 import styles from "./LoanMiniCard.module.css";
-import LoanStats from "./LoanStats";
+import LoanStats from "../LoanStats";
 
 const LoanMiniCard = ({ loanDetail }) => {
   return (
